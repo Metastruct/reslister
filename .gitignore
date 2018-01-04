@@ -10,6 +10,7 @@ luac.out
 *.o
 *.os
 *.ko
+init.lua.c
 *.obj
 *.elf
 
@@ -38,4 +39,10 @@ luac.out
 *.i*86
 *.x86_64
 *.hex
+
+dist/
+node_modules/*
+reslist.txt
+./mdlinspect.lua
+./binfuncs.lua
 

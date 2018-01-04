@@ -1,0 +1,35 @@
+{
+  "name": "reslister",
+  "version": "0.1.0",
+  "description": "Resource Lister for Valve Map Format",
+  "peerDependencies": {
+    "helpers": "git+https://github.com/Metastruct/glua_utilities.git#helpers"
+  },
+  "bundledDependencies": [
+    "helpers"
+  ],
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Metastruct/reslister.git"
+  },
+  "keywords": [
+    "vmf",
+    "valve",
+    "resource list"
+  ],
+  "devDependencies": {
+    "gmod-packager": "git+https://github.com/Python1320/gmod-packager.git"
+  },
+  "scripts": {
+    "postinstall": "gmod-packager"
+  },
+  "author": "Python1320",
+  "bugs": {
+    "url": "https://github.com/Metastruct/reslister/issues"
+  },
+  "homepage": "https://github.com/Metastruct/reslister#readme",
+  "dependencies": {
+    "helpers": "git+https://github.com/Metastruct/glua_utilities.git#helpers"
+  }
+}
