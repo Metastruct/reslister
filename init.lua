@@ -26,8 +26,8 @@ end
 local file, respath,out = unpack(t)
 
 if not file and not respath then
-	file = [[x:\do\GMod\metastruct\mapfiles\gm_construct_m3_114.vmf]]
-	respath = [[x:\do\GMod\metastruct\mapdata]]	
+	print[[Usage: reslister [--format=bspzip] "c:\mymap\map.vmf" "c:\mymap\resources" "c:\mymap\reslist.txt"]]
+	return
 end
 out = out or [[reslist.txt]]
 
@@ -159,7 +159,7 @@ local function parse_mdl(f, fp)
 		local found
 		for _,path in next,paths do
 
-			if dogeneric(("materials/%s/%s.vtf"):format(path,material)) or dogeneric(("materials/%s/%s.vmt"):format(path,material)) then
+			if dogeneric(("materials/%s/%s.vmt"):format(path,material)) or dogeneric(("materials/%s/%s.vtf"):format(path,material)) then
 				--print("FOUND",path,material)
 				found=true
 				break
@@ -328,6 +328,7 @@ local function main()
 	for i=#t,math.max(1,#t-10),-1 do
 		print("",math.floor(t[#t][2]/1000),"KB",t[i][1])
 	end
+
 end
 
 main()
