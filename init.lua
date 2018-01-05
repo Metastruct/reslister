@@ -128,6 +128,9 @@ local function vmtlineparse(l)
 end
 
 function parsers:vtf()end -- no
+function parsers:phy()end
+function parsers:vvd()end
+function parsers:vtx()end
 
 function parsers:vmt()
 	for l in io.lines(self) do
@@ -218,7 +221,12 @@ function processors:model()
 		
 		local path = self
 		if dogeneric(path) then
-			return
+			path = path:sub(1,-5)
+			dogeneric(path..'.phy')
+			dogeneric(path..'.dx80.vtx')
+			dogeneric(path..'.dx90.vtx')
+			dogeneric(path..'.sw.vtx')
+			dogeneric(path..'.vvd')
 		end
 		
 	else
