@@ -246,7 +246,7 @@ local function parsevmfline(l)
 	if not pos then return end
 	local left = l:sub(2, pos):lower()
 
-	if not (left:find("material", 1, true) or left:find("model", 1, true) or left:find("sound", 1, true) or left:find("message", 1, true)) then
+	if not (left:find("material", 1, true) or left:find("texture", 1, true) or left:find("model", 1, true) or left:find("sound", 1, true) or left:find("message", 1, true)) then
 		return
 	end
 	
