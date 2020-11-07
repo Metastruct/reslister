@@ -1,6 +1,8 @@
 sudo: false
 
 language: c
+node_js:
+  - 
 
 addons:
   apt:
@@ -22,6 +24,7 @@ before_install:
       && pushd LuaJIT-2.1.0-beta3/src/ \
       && make HOST_CC="gcc" CROSS=x86_64-w64-mingw32- TARGET_SYS=Windows BUILDMODE=static \
       && popd
+  - nvm install --lts
   - npm install
   
 script:
