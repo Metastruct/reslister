@@ -8,6 +8,10 @@ addons:
   apt:
     packages:
       - gcc-mingw-w64
+      - libc6:i386 # for gluac
+      - libstdc++6:i386
+      - linux-libc-dev:i386
+      - gcc-4.8-multilib
       - libc6-dev-i386
       - luajit
       
