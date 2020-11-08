@@ -1,6 +1,13 @@
 -- reslister --
 
 --local lfs = require'lfs'
+
+-- uncomment for debug
+--if not pcall(require,'vstruct') and not package.path:find([[;.\?\init.lua]],1,true) then
+--	package.path=package.path..[[;.\?\init.lua]]
+--end
+
+
 require'minigcompat'
 require'binfuncs'
 require'mdlinspect'
@@ -158,7 +165,6 @@ local function parse_mdl(f, fp)
 		local material = matdat[1]
 		local found
 		for _,path in next,paths do
-
 			if dogeneric(("materials/%s/%s.vmt"):format(path,material)) or dogeneric(("materials/%s/%s.vtf"):format(path,material)) then
 				--print("FOUND",path,material)
 				found=true
@@ -189,7 +195,10 @@ end
 function processors:texture()
 	if dogeneric("materials/"..self) then return end
 	if not self:lower():find("%.[a-z][a-z][a-z]$",-4) then
-		if dogeneric(("materials/%s.vtf"):format(self)) then return end
+		local gotvmt = dogeneric(("materials/%s.vmt"):format(self))
+		local gotvtf = dogeneric(("materials/%s.vtf"):format(self))
+		if gotvmt or gotvtf then return end
+		
 		if dogeneric(("materials/%s.jpg"):format(self)) then return end
 		if dogeneric(("materials/%s.png"):format(self)) then return end
 	end
@@ -249,7 +258,7 @@ local function parsevmfline(l)
 	if not (left:find("material", 1, true) or left:find("texture", 1, true) or left:find("model", 1, true) or left:find("sound", 1, true) or left:find("message", 1, true)) then
 		return
 	end
-	
+
 	local right = l:sub(pos + 3, -1)
 	local firstquote = left:find('"', 1, true)
 	local key = left:sub(firstquote + 1, #left - 1)
@@ -263,17 +272,17 @@ local function parsevmfline(l)
 	end
 
 	t[val:lower()] = true
-	
 end
 
 local function process_found()
-	for k, v in next, res do
-		k = k:lower()
-		local processor_func = processors[k]
+	for restype, paths in next, res do
+		restype = restype:lower()
+
+		local processor_func = processors[restype]
 
 		if processor_func then
-			for k, v in next, v do
-				processor_func(k)
+			for path, _ in next, paths do
+				processor_func(path)
 			end
 		end
 	end
