@@ -86,7 +86,17 @@ end
 -- parsers for different filetypes --
 local vmt_key_whitelist = {}
 
-for k, v in next, {'basetexture','texture', 'detail', 'blendmodulatetexture', 'bumpmap', 'normalmap', 'parallaxmap', 'heightmap', 'selfillummask', 'lightwarptexture', 'envmap', 'envmapmask', 'displacementmap', 'reflecttexture', 'refracttexture', 'refracttinttexture', 'dudvmap', 'bottommaterial', 'underwateroverlay'} do
+local w= {'basetexture','basetexture2',
+'phongexponenttexture','texture', 'detail',
+ 'blendmodulatetexture', 'bumpmap', 
+ 'normalmap', 'parallaxmap', 'heightmap', 
+ 'selfillummask', 'lightwarptexture', 
+ 'envmap', 'envmapmask', 'displacementmap', 
+ 'reflecttexture', 'refracttexture',
+ 'refracttinttexture', 'dudvmap', 
+ 'bottommaterial', 'underwateroverlay'}
+ 
+for k, v in next, w do
 	vmt_key_whitelist[v] = true
 end
 
