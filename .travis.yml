@@ -42,7 +42,7 @@ deploy:
   token:
     secure: Vz+HkeiCzBk9pI6qQI4wxgYlGkXFhGMAeIpZIROcgLNbIKO2+xGtcepJ1EFclmlPz7sUwrrp0bAD/oxsacZQK7uc5oRreO2XjdwHNS54AFynAAC4vOsWI88+u35yHjF/etCHx+QrRPCjwA42Bzfo4ZQPfpXojiV+Vf4Uxz9zL4Y8Jgr/5oVcU/pK4uazETv65ibC5wSTbS+BKNmHEuURbpM9uasiOYnonKxVn812bLrRMSkV7mP4vM8AQOanT9/bYfC9QPVbaaBHRDiqFpFP1syFuEJ90KgHmBmre8kyzs/HAfGlqIi6QMpDtpsOiPR0ARMWiCasjEHb70cdVQ8TDawHVlZIqdXjFsA/ycXRY6AqoUMVYH5haG5MMcs+hL1gCd+biANXLpdqg+2qcXLcui2rZJhahT2o1LCGPdVsfR3+1xDA1tdl5oUxpk+SNemJCiXvqYYwqvGES9hZZ1rLdsniN4vYQZYDnQeoLyFVfTW/M6hIlrsXzIyDQMSL2bExy92eUsuq3bx5a407m0Xp5jGzY95bORaseN7DB011HJRuKxdX1H56esyrGSPY9/OGLHq1I41KfaLOiaQ3oQVJSUFL66HrtqRrmCGtr93GG6mgrRmW+3pa3Jc08U4uCEffaQyRkH96NWCpjbI88nEcZ4bZSDtF22/kcjxu05kU034=
   file: reslister.exe
-  cleanup: false
+  skip_cleanup: true
   on:
     branch: master
 branches:
