@@ -40,3 +40,35 @@ jobs:
         && export PATH=$PATH:`pwd`/gluac \
         && ls *.lua | xargs -- gluac -p -- \
         && CC=x86_64-w64-mingw32-gcc NM=x86_64-w64-mingw32-nm make luastaticlib=./LuaJIT-2.1.0-beta3/src/libluajit.a luaincludedir=./LuaJIT-2.1.0-beta3/src/
+
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with: 
+        name: reslister
+        path: reslister.exe
+        
+    - name: Create Draft Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name:     ${{ steps.set_tag.outputs.TAG }}
+        release_name: ${{ steps.set_tag.outputs.TAG }}
+        draft: true
+        prerelease: false
+
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./reslister.exe
+        asset_name: reslister.exe
+        asset_content_type: application/vnd.microsoft.portable-executable
+
+    - uses: eregon/publish-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
