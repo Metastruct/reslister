@@ -1,5 +1,5 @@
 luastaticlib = /mingw64/lib/libluajit-5.1.a
-luaincludedir = /mingw64/include/luajit-2.0/
+luaincludedir = /mingw64/include/luajit-2.1/
 all:
 	test -f mdlinspect.lua || ln dist/lua/includes/modules/mdlinspect.lua
 	test -f binfuncs.lua || ln dist/lua/includes/modules/binfuncs.lua

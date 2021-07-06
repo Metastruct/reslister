@@ -86,7 +86,7 @@ end
 -- parsers for different filetypes --
 local vmt_key_whitelist = {}
 
-local w= {'basetexture','basetexture2',
+local w= {'basetexture','basetexture2','ambientoccltexture','emissiveblendbasetexture',
 'phongexponenttexture','texture', 'detail',
  'blendmodulatetexture', 'bumpmap', 
  'normalmap', 'parallaxmap', 'heightmap', 
@@ -123,8 +123,16 @@ local function vmtlineparse(l)
 		return
 	end
 
+	local likely_texture_check=false
 	key = key:lower()
-	if not vmt_key_whitelist[key] then return end
+	if not vmt_key_whitelist[key] then 
+		if key:find"texture$" then
+			print("Unknown texture key in a material",key)
+			likely_texture_check=true
+		else
+			return
+		end
+	end
 	
 	-- cleanup rest of line
 	l = l:sub(stoppos + 1, -1):gsub("[\r\n]*$", ''):gsub("^[\t%s]+", ""):gsub("[\t%s]+$", "")
@@ -133,7 +141,10 @@ local function vmtlineparse(l)
 	local val = l:match([["%s%s?"([^"]+)"]]) or l:match'"([^"]+)"%s*$'
 	val = val or l
 	assert(not val:find('"', 1, true))
-
+	if likely_texture_check and not val:find("/",2,true) then
+		print("\t Discarding key",key,"value invalid for a texture:",val)
+		return
+	end
 	--print("process",val)
 	if key:find("material", 1, true) then
 		processors.material(val)
