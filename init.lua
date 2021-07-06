@@ -86,8 +86,9 @@ end
 -- parsers for different filetypes --
 local vmt_key_whitelist = {}
 
-local w= {'basetexture','basetexture2','ambientoccltexture','emissiveblendbasetexture',
-'phongexponenttexture','texture', 'detail',
+local w= {'basetexture','basetexture2','ambientoccltexture','ambientocclusiontexture',
+'emissiveblendbasetexture','emissiveblendtexture','emissiveblendflowtexture','emissiveblendtexture',
+'phongexponenttexture','texture', 'detail','selfillumtexture',
  'blendmodulatetexture', 'bumpmap', 
  'normalmap', 'parallaxmap', 'heightmap', 
  'selfillummask', 'lightwarptexture', 
