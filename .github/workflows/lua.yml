@@ -33,5 +33,5 @@ jobs:
       run: |
         ls *.lua | xargs -- gluac -p -- \
         && export LD_LIBRARY_PATH=`pwd`/gluac${LD_LIBRARY_PATH:+:}${LD_LIBRARY_PATH:-} \
-        && export PATH=$PATH:`pwd`/gluac
+        && export PATH=$PATH:`pwd`/gluac \
         && CC=x86_64-w64-mingw32-gcc NM=x86_64-w64-mingw32-nm make luastaticlib=./LuaJIT-2.1.0-beta3/src/libluajit.a luaincludedir=./LuaJIT-2.1.0-beta3/src/
