@@ -14,7 +14,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
+      with:
+        submodules: true
     - name: Set up apt
       run: >
         sudo dpkg --add-architecture i386 && sudo apt-get update
