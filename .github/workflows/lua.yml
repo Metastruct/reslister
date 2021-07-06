@@ -17,21 +17,21 @@ jobs:
 
     - name: Set up apt
       run: >
-        sudo dpkg --add-architecture i386 && sudo apt-get update \
+        sudo dpkg --add-architecture i386 && sudo apt-get update
         && sudo apt-get install gcc-mingw-w64 luajit libc6-dev-i386 libc6:i386 libstdc++6:i386 linux-libc-dev:i386 gcc-multilib
     - name: Set up gluac
       run: >
-        curl -L 'https://github.com/Metastruct/gtravis/releases/download/travisbins/gluac.tar.xz' |tar -xJf - \
-          && export LD_LIBRARY_PATH=`pwd`/gluac${LD_LIBRARY_PATH:+:}${LD_LIBRARY_PATH:-} \
+        curl -L 'https://github.com/Metastruct/gtravis/releases/download/travisbins/gluac.tar.xz' |tar -xJf - 
+          && export LD_LIBRARY_PATH=`pwd`/gluac${LD_LIBRARY_PATH:+:}${LD_LIBRARY_PATH:-}
           && export PATH=$PATH:`pwd`/gluac
     - name: Set up luajitw64
       run: >
-        curl -L 'https://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz' |tar -xzf - \
-          && pushd LuaJIT-2.1.0-beta3/src/ \
-          && make HOST_CC="gcc" CROSS=x86_64-w64-mingw32- TARGET_SYS=Windows BUILDMODE=static \
+        curl -L 'https://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz' |tar -xzf - 
+          && pushd LuaJIT-2.1.0-beta3/src/ 
+          && make HOST_CC="gcc" CROSS=x86_64-w64-mingw32- TARGET_SYS=Windows BUILDMODE=static 
           && popd
 
     - name: Build
       run: > 
-        ls *.lua | xargs -- gluac -p -- \
+        ls *.lua | xargs -- gluac -p -- 
         && CC=x86_64-w64-mingw32-gcc NM=x86_64-w64-mingw32-nm make luastaticlib=./LuaJIT-2.1.0-beta3/src/libluajit.a luaincludedir=./LuaJIT-2.1.0-beta3/src/
