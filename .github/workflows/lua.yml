@@ -53,8 +53,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name:     ${{ steps.set_tag.outputs.TAG }}
-        release_name: ${{ steps.set_tag.outputs.TAG }}
+        tag_name:     latest
+        release_name: reslister
         draft: true
         prerelease: false
 
