@@ -357,7 +357,7 @@ local function main()
 	table.sort(t,function(a,b) return a[2]<b[2] end)
 	print"Top 10: "
 	for i=#t,math.max(1,#t-10),-1 do
-		print("",math.floor(t[#t][2]/1000),"KB",t[i][1])
+		print("",math.floor(t[i][2]/1000),"KB",t[i][1])
 	end
 
 end
