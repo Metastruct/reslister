@@ -187,7 +187,11 @@ local function parse_mdl(f, fp)
 		local material = matdat[1]
 		local found
 		for _,path in next,paths do
-			if dogeneric(("materials/%s/%s.vmt"):format(path,material)) or dogeneric(("materials/%s/%s.vtf"):format(path,material)) then
+
+			local found = dogeneric(("materials/%s/%s.vmt"):format(path,material)) 
+			local found2 = dogeneric(("materials/%s/%s.vtf"):format(path,material))
+			local found3 = dogeneric(("materials/%s/%s.hdr.vtf"):format(path,material))
+			if found or found2 or found3 then
 				--print("FOUND",path,material)
 				found=true
 				break
@@ -219,7 +223,8 @@ function processors:texture()
 	if not self:lower():find("%.[a-z][a-z][a-z]$",-4) then
 		local gotvmt = dogeneric(("materials/%s.vmt"):format(self))
 		local gotvtf = dogeneric(("materials/%s.vtf"):format(self))
-		if gotvmt or gotvtf then return end
+		local gotvtfhdr = dogeneric(("materials/%s.hdr.vtf"):format(self))
+		if gotvmt or gotvtf or gotvtfhdr then return end
 		
 		if dogeneric(("materials/%s.jpg"):format(self)) then return end
 		if dogeneric(("materials/%s.png"):format(self)) then return end
