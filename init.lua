@@ -188,12 +188,12 @@ local function parse_mdl(f, fp)
 		local found
 		for _,path in next,paths do
 
-			local found = dogeneric(("materials/%s/%s.vmt"):format(path,material)) 
+			local found1 = dogeneric(("materials/%s/%s.vmt"):format(path,material)) 
 			local found2 = dogeneric(("materials/%s/%s.vtf"):format(path,material))
 			local found3 = dogeneric(("materials/%s/%s.hdr.vtf"):format(path,material))
-			if found or found2 or found3 then
+			if found1 or found2 or found3 then
 				--print("FOUND",path,material)
-				found=true
+				found = true
 				break
 			end
 			
